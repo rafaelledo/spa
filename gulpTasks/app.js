@@ -20,12 +20,17 @@ function appCSS () {
     .pipe(gulp.dest('build/assets/css'))
 }
 
-function appJS (cb) {
-  return cb()
+function appJS () {
+  return gulp.src('src/assets/js/**/*.js')
+    .pipe(babel({ presets: ['env'] }))
+    .pipe(uglify())
+    .pipe(concat('app.min.js'))
+    .pipe(gulp.dest('build/assets/js'))
 }
 
-function appIMG (cb) {
-  return cb()
+function appIMG () {
+  return gulp.src('src/assets/imgs/**/*.*')
+    .pipe(gulp.dest('build/assets/imgs'))
 }
 
 module.exports = {
